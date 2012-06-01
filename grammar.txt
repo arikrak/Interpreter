@@ -1,0 +1,33 @@
+<program> --> [<listofdeclarations>] <listofstatements>
+<listofstatements> --> <statement>
+<listofstatements --> <statement> “;” <listofstatements>
+<listofdeclarations> --> <declaration>
+<listofdeclarations> --> <declaration> <listofdeclarations>
+<declaration> --> <type> <listofvariables> “;”
+<listofvariables>--><variable> “,”<listofvariables>
+<listofvariables>--><variable>
+<listofexpressions>--><exp> |<exp>“,”<listofexpressions>
+<variable>-->IDENT
+<type> --> "int" | “char”
+<statement> --> <cin> | <cout> | <if> | <assign> | <while> | “{“ <listofstatements> “}”
+<cin> --> "cin" ">>" <listofvariables>
+<cout> --> "cout" "<<" <listofexpressions>
+<if> --> “if” “(" <exp> ")" <statement> ["else" <statement>]
+<assign> --> <listofvariables> "=" <exp>
+<while> --> “while” “(“ <exp> “)” <statement>
+<exp> --> <exp1> { “||” <exp1>}*
+<exp1>--> <exp2> { “&&” <exp2>}*
+<exp2> --> “!” <exp2>
+<exp2> --> <exp3> { “|” <exp3>}*
+<exp3> --> <exp4> { “^” <exp4>}*
+<exp4> --> <exp5> { “&” <exp5>}*
+<exp5> --> “~ “<exp5> | <exp6> {(“==”|”!=”) <exp6>}*
+<exp6> --> <exp7> { <relop> <exp7>}*
+<exp7> --> <exp8> { <addop> <exp8>}*
+<exp8> --> <exp9> { <mulop> <exp9>}*
+<exp9> --> “(“ <exp> “)” |INTEGER|IDENT|CONSTCH
+<exp9>--><uarop> <exp9>
+<relop>--> “<=”|”<”|”>”|”>=”
+<addop>-->”+” | “-“
+<mulop>-->”*”|”/”|”%”
+<uarop>-->”-“|”+”
